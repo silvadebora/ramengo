@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 @RestControllerAdvice
 public class ExceptionHandlerController {
 
     @ExceptionHandler(BrothNotFoundException.class)
-    private ResponseEntity<ExceptionDetails> handlerValidException(BrothNotFoundException ex){
+    private ResponseEntity<ExceptionDetails> handlerBrothException(BrothNotFoundException ex){
         LinkedHashMap<String, String> details = new LinkedHashMap<>();
         if (ex.getCause() != null) {
             details.put("cause", ex.getCause().toString());
@@ -28,7 +29,7 @@ public class ExceptionHandlerController {
     }
 
     @ExceptionHandler(ProteinNotFoundException.class)
-    private ResponseEntity<ExceptionDetails> handlerValidException(ProteinNotFoundException ex){
+    private ResponseEntity<ExceptionDetails> handlerProteinException(ProteinNotFoundException ex){
         LinkedHashMap<String, String> details = new LinkedHashMap<>();
         if (ex.getCause() != null) {
             details.put("cause", ex.getCause().toString());
@@ -44,7 +45,7 @@ public class ExceptionHandlerController {
     }
 
     @ExceptionHandler(OrderRequestError.class)
-    private ResponseEntity<ExceptionDetails> handlerValidException(OrderRequestError ex){
+    private ResponseEntity<ExceptionDetails> handlerOrderException(OrderRequestError ex){
         LinkedHashMap<String, String> details = new LinkedHashMap<>();
         if (ex.getCause() != null) {
             details.put("cause", ex.getCause().toString());
