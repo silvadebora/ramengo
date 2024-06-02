@@ -1,9 +1,9 @@
 package com.redventures.ramengo.orders.exception;
 
 import java.time.LocalDateTime;
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 public record ExceptionDetails(String title, LocalDateTime timestamp,
                                Integer status, String exception,
-                               LinkedHashMap<String, String> details) {
+                               Map<String, String> details) {
 }
