@@ -59,4 +59,14 @@ public class ExceptionHandlerController {
                 );
 
     }
+
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<ExceptionDetails> handlerForbiddenException(ForbiddenException ex){
+
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                .body(new ExceptionDetails("x-api-key header missing",
+                        LocalDateTime.now(),
+                        HttpStatus.FORBIDDEN.value(),
+                        ex.getClass().toString(), Map.of("error", ex.getMessage())));
+    }
 }
