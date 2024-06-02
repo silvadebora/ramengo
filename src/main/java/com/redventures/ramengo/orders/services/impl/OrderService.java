@@ -30,20 +30,25 @@ public class OrderService implements IOrderService {
     @Autowired
     private ProteinRepository proteinRepository;
 
+    @Autowired
+    private GenerateOrderIdService generateOrderIdService;
+
     @Override
     public OrderView performOrder(OrderRequest order) {
         if(order.getBrothId() == null || order.getProteinId() == null){
             throw new OrderRequestError("Both brothId and proteinId are required");
         }
+        String orderId = generateOrderIdService.generateOrderId();
         Order orderEntity = OrderConverter.toEntity(order);
-        orderEntity.setAmount(calculateTotalValue(orderEntity));
+        orderEntity.setId(orderId);
+        calculateTotalValue(orderEntity);
         populateOrderDescription(orderEntity);
         orderRepository.save(orderEntity);
         return OrderConverter.toView(orderEntity);
     }
 
     @Override
-    public BigDecimal calculateTotalValue(Order order) {
+    public void calculateTotalValue(Order order) {
         var totalValue = BigDecimal.ZERO;
         var broth = brothRepository.findById(order.getBrothId().getId())
                 .orElseThrow(() -> new BrothNotFoundException("Broth not found"));
@@ -51,7 +56,7 @@ public class OrderService implements IOrderService {
         var protein = proteinRepository.findById(order.getProteinId().getId())
                 .orElseThrow(() -> new ProteinNotFoundException("Protein not found"));
         totalValue = totalValue.add(protein.getPrice());
-        return totalValue;
+        order.setAmount(totalValue);
     }
 
     @Override
