@@ -6,7 +6,6 @@ import com.redventures.ramengo.orders.domain.Protein;
 import com.redventures.ramengo.orders.exception.BrothNotFoundException;
 import com.redventures.ramengo.orders.exception.ProteinNotFoundException;
 import com.redventures.ramengo.orders.repositories.BrothRepository;
-import com.redventures.ramengo.orders.repositories.OrderRepository;
 import com.redventures.ramengo.orders.repositories.ProteinRepository;
 import com.redventures.ramengo.orders.services.impl.OrderService;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +18,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.math.BigDecimal;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
