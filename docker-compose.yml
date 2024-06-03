@@ -1,0 +1,29 @@
+version: "3"
+services:
+
+  java:
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    container_name: java
+    depends_on:
+      - mongo
+    networks:
+      - shared-net
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/ramengo
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    container_name: mongo
+    volumes:
+      - /home/sinoed/data/db:/data/db
+    networks:
+      - shared-net
+
+networks:
+  shared-net:
+    driver: bridge
