@@ -9,6 +9,8 @@ import java.util.List;
 @Document(collection = "orders")
 public class Order {
 
+    public static final String DEFAULT_IMAGE = "https://tech.redventures.com.br/icons/ramen/ramenChasu.png";
+
     private String id;
     private List<String> description;
     private String image;
@@ -17,6 +19,7 @@ public class Order {
     @DBRef
     private Protein proteinId;
     private BigDecimal amount;
+
 
     public Order() {
     }
@@ -52,11 +55,11 @@ public class Order {
     }
 
     public String getImage() {
-        return image;
+        return DEFAULT_IMAGE;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImage(String DEFAULT_IMAGE) {
+        this.image = DEFAULT_IMAGE;
     }
 
     public Broth getBrothId() {
