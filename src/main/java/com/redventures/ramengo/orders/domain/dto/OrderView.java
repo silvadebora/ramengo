@@ -3,7 +3,7 @@ package com.redventures.ramengo.orders.domain.dto;
 import java.math.BigDecimal;
 
 public class OrderView {
-    private String id;
+    private Long id;
     private String description;
     private String image;
     private BigDecimal amount;
@@ -11,18 +11,18 @@ public class OrderView {
     public OrderView() {
     }
 
-    public OrderView(String id, String description, String image, BigDecimal amount) {
+    public OrderView(Long id, String description, String image, BigDecimal amount) {
         this.id = id;
         this.description = description;
         this.image = image;
         this.amount = amount;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

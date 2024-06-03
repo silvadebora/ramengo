@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class BrothView {
 
-    private String id;
+    private Long id;
     private String imageInactive;
     private String imageActive;
     private String name;
@@ -14,7 +14,7 @@ public class BrothView {
     public BrothView() {
     }
 
-    public BrothView(String id, String imageInactive, String imageActive, String name, String description, BigDecimal price) {
+    public BrothView(Long id, String imageInactive, String imageActive, String name, String description, BigDecimal price) {
         this.id = id;
         this.imageInactive = imageInactive;
         this.imageActive = imageActive;
@@ -23,11 +23,11 @@ public class BrothView {
         this.price = price;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

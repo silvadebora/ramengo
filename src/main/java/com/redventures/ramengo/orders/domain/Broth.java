@@ -1,15 +1,15 @@
 package com.redventures.ramengo.orders.domain;
 
+import jakarta.persistence.*;
+
 import java.math.BigDecimal;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document(collection = "broths")
+@Entity
+@Table(name = "broths")
 public class Broth {
-
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
     private String imageInactive;
     private String imageActive;
     private String name;
@@ -19,11 +19,11 @@ public class Broth {
     public Broth() {
     }
 
-    public Broth(String id) {
+    public Broth(Long id) {
         this.id = id;
     }
 
-    public Broth(String id, String imageInactive, String imageActive, String name, String description, BigDecimal price) {
+    public Broth(Long id, String imageInactive, String imageActive, String name, String description, BigDecimal price) {
         this.id = id;
         this.imageInactive = imageInactive;
         this.imageActive = imageActive;
@@ -32,11 +32,11 @@ public class Broth {
         this.price = price;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

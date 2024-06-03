@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class ProteinView {
 
-    private String id;
+    private Long id;
     private String imageInactive;
     private String imageActive;
     private String name;
@@ -14,7 +14,7 @@ public class ProteinView {
     public ProteinView() {
     }
 
-    public ProteinView(String id, String imageInactive, String imageActive, String name, String description, BigDecimal price) {
+    public ProteinView(Long id, String imageInactive, String imageActive, String name, String description, BigDecimal price) {
         this.id = id;
         this.imageInactive = imageInactive;
         this.imageActive = imageActive;
@@ -23,11 +23,11 @@ public class ProteinView {
         this.price = price;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

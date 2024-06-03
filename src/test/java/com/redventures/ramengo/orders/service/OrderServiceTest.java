@@ -37,24 +37,24 @@ public class OrderServiceTest {
 
     @BeforeEach
     void setup(){
-        broth = new Broth("6658f72cd9ed522d0b7e193b", "url", "url",
+        broth = new Broth(1L, "url", "url",
                 "salt", "salt", BigDecimal.valueOf(10));
-        protein = new Protein("6658f74fd9ed522d0b7e193e", "url", "url",
+        protein = new Protein(1L, "url", "url",
                 "protein", "protein", BigDecimal.valueOf(12));
         order = new Order(broth, protein);
     }
 
     @Test
     public void testCalculateTotalValue(){
-        when(brothRepository.findById("6658f72cd9ed522d0b7e193b")).thenReturn(Optional.of(broth));
-        when(proteinRepository.findById("6658f74fd9ed522d0b7e193e")).thenReturn(Optional.of(protein));
+        when(brothRepository.findById(1L)).thenReturn(Optional.of(broth));
+        when(proteinRepository.findById(1L)).thenReturn(Optional.of(protein));
         orderService.calculateTotalValue(order);
         assertEquals(BigDecimal.valueOf(22), order.getAmount());
     }
 
     @Test
     public void testCalculateTotalValueWhenBrothNotFound(){
-        when(brothRepository.findById("6658f72cd9ed522d0b7e193b")).thenReturn(Optional.empty());
+        when(brothRepository.findById(1L)).thenReturn(Optional.empty());
         Exception brothNotFoundException = assertThrows(BrothNotFoundException.class, () -> {
             orderService.calculateTotalValue(order);
         });
@@ -64,8 +64,8 @@ public class OrderServiceTest {
 
     @Test
     public void testCalculateTotalValueWhenProteinNotFound(){
-        when(brothRepository.findById("6658f72cd9ed522d0b7e193b")).thenReturn(Optional.of(broth));
-        when(proteinRepository.findById("6658f74fd9ed522d0b7e193e")).thenReturn(Optional.empty());
+        when(brothRepository.findById(1L)).thenReturn(Optional.of(broth));
+        when(proteinRepository.findById(1L)).thenReturn(Optional.empty());
         Exception exception = assertThrows(ProteinNotFoundException.class, () -> {
             orderService.calculateTotalValue(order);
         });

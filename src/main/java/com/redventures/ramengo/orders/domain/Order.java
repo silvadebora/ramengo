@@ -1,22 +1,24 @@
 package com.redventures.ramengo.orders.domain;
 
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.List;
-
-@Document(collection = "orders")
+@Entity
+@Table(name = "orders")
 public class Order {
 
     public static final String DEFAULT_IMAGE = "https://tech.redventures.com.br/icons/ramen/ramenChasu.png";
 
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
     private List<String> description;
     private String image;
-    @DBRef
+    @OneToOne
     private Broth brothId;
-    @DBRef
+    @OneToOne
     private Protein proteinId;
     private BigDecimal amount;
 
@@ -29,7 +31,7 @@ public class Order {
         this.proteinId = proteinId;
     }
 
-    public Order(String id, List<String> description, String image, Broth brothId, Protein proteinId, BigDecimal amount) {
+    public Order(Long id, List<String> description, String image, Broth brothId, Protein proteinId, BigDecimal amount) {
         this.id = id;
         this.description = description;
         this.image = image;
@@ -38,13 +40,14 @@ public class Order {
         this.amount = amount;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
+
 
     public List<String> getDescription() {
         return description;
