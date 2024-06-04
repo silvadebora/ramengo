@@ -32,6 +32,7 @@ public class BrothService implements IBrothService {
         Broth brothEntity;
         try{
             brothEntity = gson.fromJson(broth.toString(), Broth.class);
+            brothRepository.save(brothEntity);
         } catch(Exception e){
             return ResponseEntity.badRequest().build();
         }

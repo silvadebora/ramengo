@@ -34,6 +34,7 @@ public class ProteinService implements IProteinService {
         Protein proteinEntity;
         try{
             proteinEntity = gson.fromJson(protein.toString(), Protein.class);
+            proteinRepository.save(proteinEntity);
         } catch(Exception e){
             return ResponseEntity.badRequest().build();
         }
