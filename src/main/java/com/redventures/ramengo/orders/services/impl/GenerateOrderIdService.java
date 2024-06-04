@@ -23,7 +23,6 @@ public class GenerateOrderIdService implements IGenerateOrderIdService {
     @Value("${api.key}")
     private String apiKey;
 
-
     @Override
     public String generateOrderId() {
         HttpHeaders headers = new HttpHeaders();

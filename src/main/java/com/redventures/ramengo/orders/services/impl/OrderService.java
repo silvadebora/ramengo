@@ -38,6 +38,7 @@ public class OrderService implements IOrderService {
         if(order.getBrothId() == null || order.getProteinId() == null){
             throw new OrderRequestError("Both brothId and proteinId are required");
         }
+        // many request
         //String orderId = generateOrderIdService.generateOrderId();
         Order orderEntity = OrderConverter.toEntity(order);
         calculateTotalValue(orderEntity);
