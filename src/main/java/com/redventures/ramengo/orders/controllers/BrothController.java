@@ -1,12 +1,11 @@
 package com.redventures.ramengo.orders.controllers;
 
+import com.redventures.ramengo.orders.domain.dto.BrothRequest;
 import com.redventures.ramengo.orders.domain.dto.BrothView;
 import com.redventures.ramengo.orders.services.impl.BrothService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,8 +17,12 @@ public class BrothController {
     private BrothService service;
 
     @GetMapping
-    private ResponseEntity<List<BrothView>> listBroths(){
+    public ResponseEntity<List<BrothView>> listBroths(){
         return ResponseEntity.ok().body(service.listBroths());
     }
 
+    @PostMapping
+    public ResponseEntity saveBroth(@RequestBody BrothRequest brothRequest){
+        return ResponseEntity.ok().body(service.saveBroth(brothRequest));
+    }
 }
