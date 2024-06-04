@@ -9,16 +9,41 @@
 		{
 			"name": "processOrders",
 			"request": {
-				"method": "GET",
-				"header": []
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "ZtVdh8XQ2U8pWI2gmZ7f796Vh8GllXoN7mr0djNf",
+						"key": "x-api-key"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"brothId\": 1,\r\n    \"proteinId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://redventures.onrender.com/orders"
 			},
 			"response": []
 		},
 		{
 			"name": "listProteins",
 			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "ZtVdh8XQ2U8pWI2gmZ7f796Vh8GllXoN7mr0djNf",
+						"key": "x-api-key"
+					}
+				},
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": "https://redventures.onrender.com/proteins"
 			},
 			"response": []
 		},
