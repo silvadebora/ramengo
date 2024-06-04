@@ -12,6 +12,7 @@ import org.springframework.cloud.aws.messaging.core.QueueMessagingTemplate;
 import org.springframework.cloud.aws.messaging.listener.QueueMessageHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 import org.springframework.messaging.handler.annotation.support.PayloadArgumentResolver;
 import org.springframework.messaging.handler.invocation.HandlerMethodArgumentResolver;
@@ -33,6 +34,7 @@ public class AwsSqsConfiguration {
     private String secretKey;
 
     @Bean
+    @Primary
     public AmazonSQSAsync amazonSQSAsync(){
         BasicAWSCredentials credentials = new BasicAWSCredentials(accessKeyId, secretKey);
         return AmazonSQSAsyncClientBuilder
