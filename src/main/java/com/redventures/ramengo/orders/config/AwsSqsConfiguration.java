@@ -55,7 +55,7 @@ public class AwsSqsConfiguration {
     }
 
     @Bean
-    public QueueMessageHandler queueMessageHandler() {
+    public QueueMessageHandler myQueueMessageHandler() {
         QueueMessageHandlerFactory factory = new QueueMessageHandlerFactory();
         factory.setAmazonSqs(amazonSQSAsync());
         QueueMessageHandler queueMessageHandler = factory.createQueueMessageHandler();
