@@ -6,10 +6,12 @@ import com.redventures.ramengo.orders.repositories.ProteinRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.aws.messaging.config.annotation.EnableSqs;
 import org.springframework.cloud.aws.messaging.listener.annotation.SqsListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
+@EnableSqs
 @Service
 public class ProteinListener {
 
@@ -20,13 +22,14 @@ public class ProteinListener {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
-    @SqsListener("protein")
+    @SqsListener("${aws.sqs.protein}")
     public void receiveProtein(@Payload String proteinReceived){
         try{
             Protein protein = mapper.readValue(proteinReceived, Protein.class);
             proteinRepository.save(protein);
             LOG.info("Received Protein ", protein);
         } catch (Exception e) {
+            LOG.error("Error processing message", e);
             throw new RuntimeException(e);
         }
     }

@@ -5,12 +5,14 @@ import com.redventures.ramengo.orders.domain.Broth;
 import com.redventures.ramengo.orders.repositories.BrothRepository;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.aws.messaging.config.annotation.EnableSqs;
 import org.springframework.cloud.aws.messaging.listener.annotation.SqsListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
 import org.slf4j.Logger;
 
+@EnableSqs
 @Service
 public class BrothListener {
 
@@ -21,13 +23,14 @@ public class BrothListener {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
-    @SqsListener("broth")
+    @SqsListener("${aws.sqs.broth}")
     public void receiveBroth(@Payload String brothReceived){
         try{
             Broth broth = mapper.readValue(brothReceived, Broth.class);
             LOG.info("Received Broth ", broth);
             brothRepository.save(broth);
         } catch (Exception e) {
+            LOG.error("Error processing message", e);
             throw new RuntimeException(e);
         }
     }
