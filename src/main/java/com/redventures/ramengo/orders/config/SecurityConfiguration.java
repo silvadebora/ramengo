@@ -26,12 +26,5 @@ public class SecurityConfiguration {
                                 .authenticated())
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
                 .build();
-                /*.sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .formLogin(AbstractHttpConfigurer::disable)
-                .securityMatcher("/orders", "/proteins", "/broths")
-                .authorizeHttpRequests(registry ->
-                        registry.anyRequest().authenticated())
-                .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
-                .build();*/
     }
 }
