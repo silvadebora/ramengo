@@ -22,7 +22,7 @@ public class AwsSqsConfiguration {
     private String secretKey;
 
     @Bean
-    public AmazonSQS amazonSQS(){
+    public AmazonSQS amazonSQSBuilder(){
         BasicAWSCredentials credentials = new BasicAWSCredentials(accessKeyId, secretKey);
         return AmazonSQSClientBuilder
                 .standard()
