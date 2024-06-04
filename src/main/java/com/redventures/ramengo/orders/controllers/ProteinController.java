@@ -22,9 +22,4 @@ public class ProteinController {
     public ResponseEntity<List<ProteinView>> listProteins(){
         return ResponseEntity.ok().body(service.listProteins());
     }
-
-    @PostMapping
-    public ResponseEntity saveProtein(@RequestBody Object request){
-        return ResponseEntity.ok().body(service.saveProtein(request));
-    }
 }

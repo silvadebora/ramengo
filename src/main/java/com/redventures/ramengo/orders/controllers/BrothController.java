@@ -20,9 +20,4 @@ public class BrothController {
     public ResponseEntity<List<BrothView>> listBroths(){
         return ResponseEntity.ok().body(service.listBroths());
     }
-
-    @PostMapping
-    public ResponseEntity saveBroth(@RequestBody BrothRequest brothRequest){
-        return ResponseEntity.ok().body(service.saveBroth(brothRequest));
-    }
 }
