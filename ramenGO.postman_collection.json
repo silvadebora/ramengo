@@ -1,0 +1,42 @@
+{
+	"info": {
+		"_postman_id": "89f71eef-328a-49fe-b6eb-8cd2c3b0814b",
+		"name": "ramenGO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "23603707"
+	},
+	"item": [
+		{
+			"name": "processOrders",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "listProteins",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "listBroths",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "ZtVdh8XQ2U8pWI2gmZ7f796Vh8GllXoN7mr0djNf",
+						"key": "x-api-key"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "https://redventures.onrender.com/broths"
+			},
+			"response": []
+		}
+	]
+}
